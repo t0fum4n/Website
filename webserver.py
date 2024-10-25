@@ -10,8 +10,12 @@ PORT = 80  # Use port 80 for HTTP
 
 class MyHandler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
-        # Serve the requested file or directory
-        super().do_GET()
+        if self.path.endswith(".py"):
+            self.send_response(403)
+            self.end_headers()
+            self.wfile.write(b"403 Forbidden")
+        else:
+            super().do_GET()
 
 # Create a TCP server using the handler
 with socketserver.TCPServer(("", PORT), MyHandler) as httpd:
