@@ -27,8 +27,8 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
         try:
             conn = mysql.connector.connect(
                 host="localhost",
-                user="root",  # MySQL root user
-                password="",  # No password for root
+                user="readonly_user",  # MySQL root user
+                password="readonly_user",  # No password for root
                 database="website_data"  # Correct database name
             )
         except mysql.connector.Error as err:
