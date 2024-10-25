@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Cybersecurity blog by T0fum4n, covering hacking, threat intelligence, and all things IT security.">
-    <title>T0fum4n | Cybersecurity Blog</title>
+    <meta name="description" content="Learn more about T0fum4n, the cybersecurity expert behind the blog.">
+    <title>About | T0fum4n's Cybersecurity Blog</title>
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -54,22 +54,19 @@
         .content {
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
             padding: 40px 20px;
+            max-width: 800px;
+            margin: auto;
+            text-align: left;
         }
-        .card {
-            background-color: #161b22;
-            border: 1px solid #30363d;
-            border-radius: 10px;
-            width: 300px;
-            padding: 20px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+        .content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #58a6ff;
         }
-        .card h3 {
-            margin-top: 0;
-        }
-        .card p {
+        .content p {
+            font-size: 1.2rem;
+            line-height: 1.6;
             color: #8b949e;
         }
         footer {
@@ -90,36 +87,48 @@
 <body>
 
     <header>
-        <h1>T0fum4n's Cybersecurity Blog</h1>
+        <h1>About T0fum4n</h1>
         <nav>
-   	 <a href="index.html">Home</a>
-   	 <a href="about.html">About</a>
-   	 <a href="articles.html">Articles</a>
-   	 <a href="contact.html">Contact</a>
-	</nav>
-
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="articles.html">Articles</a>
+            <a href="contact.html">Contact</a>
+        </nav>
     </header>
 
     <section class="hero">
-        <h2>Welcome to T0fum4n.com</h2>
-        <p>Diving deep into hacking, cybersecurity news, and the latest in IT security trends.</p>
+        <h2>Who is T0fum4n?</h2>
+        <p>A passionate cybersecurity enthusiast and blogger dedicated to demystifying IT security.</p>
     </section>
 
     <section class="content">
-        <div class="card">
-            <h3>Latest Post: The State of Cloud Security</h3>
-            <p>A deep dive into AWS vulnerabilities, security controls, and best practices for 2024.</p>
-        </div>
+        <article>
+            <h3>Our Mission</h3>
+            <p>
+                At T0fum4n's Cybersecurity Blog, we aim to empower both beginners and experts in the field of cybersecurity.
+                We explore the latest in threat intelligence, cloud security, and ethical hacking,
+                providing hands-on tutorials and practical insights to stay ahead in an ever-evolving industry.
+            </p>
 
-        <div class="card">
-            <h3>Zero-Day Alerts</h3>
-            <p>Stay ahead of the curve with the latest vulnerabilities and zero-day news.</p>
-        </div>
+            <h3>Meet the Author</h3>
+            <p>
+                I'm T0fum4n, a cybersecurity professional with a love for hacking, open-source tools, and threat intelligence.
+                I believe in the power of knowledge-sharing and building a strong community around IT security. Whether it’s deep-diving into
+                zero-day vulnerabilities or breaking down complex security concepts, my goal is to make cybersecurity accessible to everyone.
+            </p>
 
-        <div class="card">
-            <h3>Tools & Tutorials</h3>
-            <p>Learn how to use tools like Nmap, Metasploit, and Wireshark with hands-on tutorials.</p>
-        </div>
+            <h3>What You'll Find Here</h3>
+            <p>
+                This blog covers a range of topics including:
+                <ul>
+                    <li>Cloud Security (AWS, Azure, GCP)</li>
+                    <li>Threat Intelligence Feeds & Alerts</li>
+                    <li>Ethical Hacking Tutorials</li>
+                    <li>Reviews of Security Tools</li>
+                </ul>
+                Stay tuned for the latest posts and join the conversation!
+            </p>
+        </article>
     </section>
 
     <footer>
