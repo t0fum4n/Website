@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Send a message to an ntfy topic.">
+    <meta name="description" content="Send a message to the ntfy topic 'websitemessage'.">
     <title>Send Message | T0fum4n's Cybersecurity Blog</title>
 
     <!-- Google Fonts -->
@@ -46,7 +46,7 @@
             text-align: center;
             padding: 100px 20px;
         }
-        input, textarea {
+        textarea {
             width: calc(100% - 40px);
             max-width: 600px;
             padding: 10px;
@@ -57,7 +57,7 @@
             color: #c9d1d9;
             box-sizing: border-box;
         }
-        input::placeholder, textarea::placeholder {
+        textarea::placeholder {
             color: #8b949e;
         }
         button {
@@ -91,16 +91,15 @@
 
     <script>
         async function sendMessage() {
-            const topic = document.getElementById('topic').value;
             const message = document.getElementById('message').value;
 
-            if (!topic || !message) {
-                alert('Please enter both a topic and a message.');
+            if (!message) {
+                alert('Please enter a message.');
                 return;
             }
 
             try {
-                const response = await fetch(`https://ntfy.sh/${topic}`, {
+                const response = await fetch('https://ntfy.sh/websitemessage', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'text/plain'
@@ -124,7 +123,7 @@
 <body>
 
     <header>
-        <h1>Send a Message to ntfy</h1>
+        <h1>Send a Message</h1>
         <nav>
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
@@ -134,9 +133,8 @@
     </header>
 
     <section class="content">
-        <h2>Enter a Topic and Message</h2>
-        <input type="text" id="topic" placeholder="Enter ntfy topic (e.g., mytopic)" required>
-        <textarea id="message" rows="5" placeholder="Enter your message here" required></textarea>
+        <h2>Send a Message to ntfy Topic: <em>websitemessage</em></h2>
+        <textarea id="message" rows="5" placeholder="Enter your message here..." required></textarea>
         <button onclick="sendMessage()">Send Message</button>
     </section>
 
