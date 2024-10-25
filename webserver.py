@@ -26,10 +26,10 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
         # Connect to the MySQL database and query user data
         try:
             conn = mysql.connector.connect(
-                host="localhost",  # MySQL server address
+                host="localhost",
                 user="root",  # MySQL root user
-                password="",  # No password for root user
-                database="my_database"  # Replace with your database name
+                password="",  # No password for root
+                database="website_data"  # Correct database name
             )
         except mysql.connector.Error as err:
             return f"<h1>Database connection error: {err}</h1>"
