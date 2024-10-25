@@ -1,0 +1,133 @@
+Awesome. Now create me an about.html page based on this index.html template
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cybersecurity blog by T0fum4n, covering hacking, threat intelligence, and all things IT security.">
+    <title>T0fum4n | Cybersecurity Blog</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Styles -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+        }
+        header {
+            background-color: #161b22;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #30363d;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            color: #58a6ff;
+        }
+        nav a {
+            color: #c9d1d9;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 700;
+        }
+        nav a:hover {
+            color: #58a6ff;
+        }
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+        }
+        .hero h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #58a6ff;
+        }
+        .hero p {
+            font-size: 1.2rem;
+        }
+        .content {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 40px 20px;
+        }
+        .card {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            width: 300px;
+            padding: 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        .card h3 {
+            margin-top: 0;
+        }
+        .card p {
+            color: #8b949e;
+        }
+        footer {
+            background-color: #161b22;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            border-top: 1px solid #30363d;
+        }
+        footer p {
+            margin: 0;
+            color: #8b949e;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>T0fum4n's Cybersecurity Blog</h1>
+        <nav>
+   	 <a href="index.html">Home</a>
+   	 <a href="about.html">About</a>
+   	 <a href="articles.html">Articles</a>
+   	 <a href="contact.html">Contact</a>
+	</nav>
+
+    </header>
+
+    <section class="hero">
+        <h2>Welcome to T0fum4n.com</h2>
+        <p>Diving deep into hacking, cybersecurity news, and the latest in IT security trends.</p>
+    </section>
+
+    <section class="content">
+        <div class="card">
+            <h3>Latest Post: The State of Cloud Security</h3>
+            <p>A deep dive into AWS vulnerabilities, security controls, and best practices for 2024.</p>
+        </div>
+
+        <div class="card">
+            <h3>Zero-Day Alerts</h3>
+            <p>Stay ahead of the curve with the latest vulnerabilities and zero-day news.</p>
+        </div>
+
+        <div class="card">
+            <h3>Tools & Tutorials</h3>
+            <p>Learn how to use tools like Nmap, Metasploit, and Wireshark with hands-on tutorials.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2024 T0fum4n. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
