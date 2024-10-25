@@ -46,11 +46,17 @@
             text-align: center;
             padding: 100px 20px;
         }
-        textarea {
-            width: calc(100% - 40px);
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             max-width: 600px;
+            margin: 0 auto;
+        }
+        textarea {
+            width: 100%;
             padding: 10px;
-            margin: 10px 0;
+            margin-bottom: 15px;
             border: 1px solid #30363d;
             border-radius: 5px;
             background-color: #0d1117;
@@ -69,7 +75,6 @@
             font-weight: bold;
             text-transform: uppercase;
             border-radius: 5px;
-            margin-top: 10px;
         }
         button:hover {
             background-color: #4691d9;
@@ -134,8 +139,10 @@
 
     <section class="content">
         <h2>Send a Message to ntfy Topic: <em>websitemessage</em></h2>
-        <textarea id="message" rows="5" placeholder="Enter your message here..." required></textarea>
-        <button onclick="sendMessage()">Send Message</button>
+        <div class="form-container">
+            <textarea id="message" rows="5" placeholder="Enter your message here..." required></textarea>
+            <button onclick="sendMessage()">Send Message</button>
+        </div>
     </section>
 
     <footer>
