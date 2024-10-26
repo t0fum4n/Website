@@ -107,6 +107,7 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
                     border: 1px solid #30363d;
                     border-radius: 10px;
                     padding: 20px;
+                    box-sizing: border-box;
                 }
                 .users-container {
                     flex: 3;
@@ -139,6 +140,7 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
                     border-radius: 8px;
                     color: #c9d1d9;
                     font-size: 16px;
+                    box-sizing: border-box;
                 }
                 input::placeholder {
                     color: #8b949e;
@@ -152,7 +154,8 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
                     width: 100%;
                     padding: 12px;
                     margin-top: 10px;
-                    background-color: #238636;
+                    background-color: #238636;  /* Change to blue */
+                    background-color: #0366d6;  /* Blue button */
                     border: none;
                     border-radius: 8px;
                     color: #ffffff;
@@ -161,7 +164,7 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
                     transition: background-color 0.3s ease;
                 }
                 button:hover {
-                    background-color: #2ea043;
+                    background-color: #005cc5;
                 }
             </style>
         </head>
