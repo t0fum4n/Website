@@ -102,18 +102,108 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
             <title>Users | T0fum4n Blog</title>
             <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
             <style>
-                body { margin: 0; padding: 0; font-family: 'Roboto', sans-serif; background-color: #0d1117; color: #c9d1d9; }
-                header, footer { background-color: #161b22; padding: 20px; text-align: center; }
-                .container { display: flex; padding: 40px; gap: 20px; }
-                .form-container { flex: 1; max-width: 300px; background-color: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 20px; }
-                .users-container { flex: 3; display: flex; flex-wrap: wrap; gap: 20px; }
-                .card { background-color: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 20px; width: 300px; position: relative; }
-                .delete-btn { position: absolute; top: 10px; right: 10px; background-color: red; color: white; border: none; border-radius: 5px; padding: 5px 10px; cursor: pointer; }
-                input, button { width: 100%; margin-top: 10px; padding: 12px; }
+                body {
+                    margin: 0;
+                    padding: 0;
+                    font-family: 'Roboto', sans-serif;
+                    background-color: #0d1117;
+                    color: #c9d1d9;
+                }
+                header, footer {
+                    background-color: #161b22;
+                    padding: 20px;
+                    text-align: center;
+                }
+                .container {
+                    display: flex;
+                    padding: 40px;
+                    gap: 20px;
+                }
+                .form-container {
+                    flex: 1;
+                    max-width: 300px;
+                    background-color: #161b22;
+                    border: 1px solid #30363d;
+                    border-radius: 10px;
+                    padding: 20px;
+                }
+                .users-container {
+                    flex: 3;
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 20px;
+                }
+                .card {
+                    position: relative;
+                    background-color: #161b22;
+                    border: 1px solid #30363d;
+                    border-radius: 10px;
+                    padding: 20px;
+                    width: 300px;
+                    transition: transform 0.2s;
+                }
+                .card:hover {
+                    transform: scale(1.03);
+                }
+                .delete-btn {
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                    background-color: #d73a49;
+                    color: white;
+                    border: none;
+                    border-radius: 5px;
+                    padding: 5px 8px;
+                    font-size: 12px;
+                    cursor: pointer;
+                    transition: background-color 0.3s ease;
+                }
+                .delete-btn:hover {
+                    background-color: #e55361;
+                }
+                input {
+                    width: 100%;
+                    margin-top: 10px;
+                    padding: 12px;
+                    background-color: #0d1117;
+                    border: 1px solid #30363d;
+                    border-radius: 8px;
+                    color: #c9d1d9;
+                    font-size: 16px;
+                }
+                input::placeholder {
+                    color: #8b949e;
+                }
+                input:focus {
+                    outline: none;
+                    border-color: #58a6ff;
+                    box-shadow: 0 0 8px #58a6ff;
+                }
+                button {
+                    width: 100%;
+                    padding: 12px;
+                    margin-top: 10px;
+                    background-color: #0366d6;
+                    border: none;
+                    border-radius: 8px;
+                    color: white;
+                    font-size: 16px;
+                    cursor: pointer;
+                    transition: background-color 0.3s ease;
+                }
+                button:hover {
+                    background-color: #005cc5;
+                }
             </style>
         </head>
         <body>
-            <header><h1>Users List</h1><nav><a href="index.html">Home</a><a href="/users.html">Users</a></nav></header>
+            <header>
+                <h1>Users List</h1>
+                <nav>
+                    <a href="index.html">Home</a>
+                    <a href="/users.html">Users</a>
+                </nav>
+            </header>
             <div class="container">
                 <div class="form-container">
                     <h3>Add New User</h3>
@@ -131,17 +221,19 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
         for user_id, name, email in rows:
             html += f"""
             <div class="card">
+                <button class="delete-btn" data-user-id="{user_id}">Delete</button>
                 <h3>User ID: {user_id}</h3>
                 <p>Name: {name}</p>
                 <p>Email: {email}</p>
-                <button class="delete-btn" data-user-id="{user_id}">Delete</button>
             </div>
             """
 
         html += """
                 </div>
             </div>
-            <footer><p>© 2024 T0fum4n. All rights reserved.</p></footer>
+            <footer>
+                <p>© 2024 T0fum4n. All rights reserved.</p>
+            </footer>
             <script>
                 document.querySelectorAll('.delete-btn').forEach(button => {
                     button.addEventListener('click', () => {
