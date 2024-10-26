@@ -27,19 +27,24 @@
         }
         .form-container {
             flex: 1;
-            min-width: 300px;
+            max-width: 300px;
             background-color: #161b22;
             border: 1px solid #30363d;
             border-radius: 10px;
             padding: 30px;
             box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%; /* Make the block fill available space */
         }
         .form-container h3 {
-            margin-top: 0;
+            margin-bottom: 20px;
             text-align: center;
         }
-        .form-container input {
-            width: 100%;
+        .form-container input, .form-container button {
+            width: 100%; /* Ensure button matches the input field width */
             margin-bottom: 15px;
             padding: 12px;
             background-color: #0d1117;
@@ -48,12 +53,17 @@
             color: #c9d1d9;
             font-size: 16px;
         }
+        .form-container input::placeholder {
+            color: #8b949e;
+        }
+        .form-container input:focus {
+            outline: none;
+            border-color: #58a6ff;
+            box-shadow: 0 0 8px #58a6ff;
+        }
         .form-container button {
-            width: 100%;
-            padding: 12px;
             background-color: #0366d6;
             border: none;
-            border-radius: 8px;
             color: white;
             font-size: 16px;
             cursor: pointer;
@@ -77,9 +87,6 @@
             flex-direction: column;
             justify-content: space-between;
         }
-        .card h3, .card p {
-            margin: 5px 0;
-        }
         .delete-btn {
             background-color: #d73a49;
             color: white;
@@ -90,6 +97,7 @@
             transition: background-color 0.3s ease;
             margin-top: 10px;
             align-self: center;
+            width: 100px;
         }
         .delete-btn:hover {
             background-color: #e55361;
