@@ -130,10 +130,38 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
                 nav a:hover {
                     color: #58a6ff;
                 }
-                input, button {
-                    padding: 10px;
-                    margin: 5px 0;
+                input {
                     width: 100%;
+                    margin: 10px 0;
+                    padding: 12px;
+                    background-color: #0d1117;
+                    border: 1px solid #30363d;
+                    border-radius: 8px;
+                    color: #c9d1d9;
+                    font-size: 16px;
+                }
+                input::placeholder {
+                    color: #8b949e;
+                }
+                input:focus {
+                    outline: none;
+                    border-color: #58a6ff;
+                    box-shadow: 0 0 8px #58a6ff;
+                }
+                button {
+                    width: 100%;
+                    padding: 12px;
+                    margin-top: 10px;
+                    background-color: #238636;
+                    border: none;
+                    border-radius: 8px;
+                    color: #ffffff;
+                    font-size: 16px;
+                    cursor: pointer;
+                    transition: background-color 0.3s ease;
+                }
+                button:hover {
+                    background-color: #2ea043;
                 }
             </style>
         </head>
@@ -150,9 +178,9 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
                 <div class="form-container">
                     <h3>Add New User</h3>
                     <form method="POST" action="/add_user">
-                        <input type="text" name="name" placeholder="Name" required><br>
-                        <input type="email" name="email" placeholder="Email" required><br>
-                        <input type="password" name="password" placeholder="Password" required><br>
+                        <input type="text" name="name" placeholder="Name" required>
+                        <input type="email" name="email" placeholder="Email" required>
+                        <input type="password" name="password" placeholder="Password" required>
                         <button type="submit">Add User</button>
                     </form>
                 </div>
