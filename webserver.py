@@ -33,11 +33,9 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
         except mysql.connector.Error as err:
             return f"<h1>Database connection error: {err}</h1>"
 
-        # Load the HTML template from file
         with open("users_template.html", "r") as file:
             template = file.read()
 
-        # Generate user cards dynamically
         user_cards = ""
         for user_id, name, email in rows:
             user_cards += f"""
@@ -51,47 +49,8 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
             </div>
             """
 
-        # Insert user cards into the template
         html_content = template.replace("<!-- USER_CARDS -->", user_cards)
         return html_content
-
-    def do_POST(self):
-        if self.path == "/add_user":
-            content_length = int(self.headers['Content-Length'])
-            post_data = self.rfile.read(content_length)
-            form_data = parse_qs(post_data.decode("utf-8"))
-
-            name = form_data.get("name", [""])[0]
-            email = form_data.get("email", [""])[0]
-            password = form_data.get("password", [""])[0]
-
-            if name and email and password:
-                result = self.add_user_to_db(name, email, password)
-                if "successfully" in result:
-                    self.send_response(303)
-                    self.send_header("Location", "/users.html")
-                    self.end_headers()
-                else:
-                    self.send_error(400, result)
-            else:
-                self.send_error(400, "All fields are required.")
-
-    def add_user_to_db(self, name, email, password):
-        hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
-        try:
-            conn = mysql.connector.connect(
-                host="localhost", user="root", password="", database="website_data"
-            )
-            cursor = conn.cursor()
-            cursor.execute(
-                "INSERT INTO users (name, email, password) VALUES (%s, %s, %s)",
-                (name, email, hashed_password.decode('utf-8')),
-            )
-            conn.commit()
-            conn.close()
-            return "User added successfully!"
-        except mysql.connector.Error as err:
-            return f"Error: {err}"
 
     def do_DELETE(self):
         if self.path.startswith("/delete_user"):
