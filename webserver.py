@@ -124,16 +124,18 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
         return html
 
     def add_user_to_db(self, name, email):
-        # Connect to the MySQL database and insert the new user
+        # Connect to the MySQL database and insert the new user with a default password
         try:
             conn = mysql.connector.connect(
                 host="localhost",
-                user="root",  # Replace with the appropriate user
-                password="",  # Replace with the actual password
+                user="readonly_user",  # Replace with the appropriate user
+                password="your_password",  # Replace with the actual password
                 database="website_data"
             )
             cursor = conn.cursor()
-            cursor.execute("INSERT INTO users (name, email) VALUES (%s, %s)", (name, email))
+            # Insert with a default password
+            cursor.execute("INSERT INTO users (name, email, password) VALUES (%s, %s, %s)",
+                           (name, email, "default_password"))
             conn.commit()
             conn.close()
             return "User added successfully!"
