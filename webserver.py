@@ -83,14 +83,58 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
             <title>Users | T0fum4n Blog</title>
             <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
             <style>
-                body { margin: 0; padding: 0; font-family: 'Roboto', sans-serif; background-color: #0d1117; color: #c9d1d9; }
-                header, footer { background-color: #161b22; padding: 20px; text-align: center; }
-                .content { padding: 40px; display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
-                .card { background-color: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 20px; width: 300px; }
-                nav a { margin: 0 15px; color: #c9d1d9; text-decoration: none; }
-                nav a:hover { color: #58a6ff; }
-                form { margin-top: 20px; }
-                input, button { padding: 10px; margin: 5px 0; width: 100%; max-width: 300px; }
+                body {
+                    margin: 0;
+                    padding: 0;
+                    font-family: 'Roboto', sans-serif;
+                    background-color: #0d1117;
+                    color: #c9d1d9;
+                }
+                header, footer {
+                    background-color: #161b22;
+                    padding: 20px;
+                    text-align: center;
+                }
+                .container {
+                    display: flex;
+                    padding: 40px;
+                    gap: 20px;
+                }
+                .form-container {
+                    flex: 1;
+                    max-width: 300px;
+                    background-color: #161b22;
+                    border: 1px solid #30363d;
+                    border-radius: 10px;
+                    padding: 20px;
+                }
+                .users-container {
+                    flex: 3;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: flex-start;
+                    gap: 20px;
+                }
+                .card {
+                    background-color: #161b22;
+                    border: 1px solid #30363d;
+                    border-radius: 10px;
+                    padding: 20px;
+                    width: 300px;
+                }
+                nav a {
+                    margin: 0 15px;
+                    color: #c9d1d9;
+                    text-decoration: none;
+                }
+                nav a:hover {
+                    color: #58a6ff;
+                }
+                input, button {
+                    padding: 10px;
+                    margin: 5px 0;
+                    width: 100%;
+                }
             </style>
         </head>
         <body>
@@ -101,7 +145,20 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
                     <a href="/users.html">Users</a>
                 </nav>
             </header>
-            <section class="content">
+            <div class="container">
+                <!-- Add User Form on the Left -->
+                <div class="form-container">
+                    <h3>Add New User</h3>
+                    <form method="POST" action="/add_user">
+                        <input type="text" name="name" placeholder="Name" required><br>
+                        <input type="email" name="email" placeholder="Email" required><br>
+                        <input type="password" name="password" placeholder="Password" required><br>
+                        <button type="submit">Add User</button>
+                    </form>
+                </div>
+
+                <!-- Users List on the Right -->
+                <div class="users-container">
         """
 
         # Add each user as a card
@@ -114,18 +171,10 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
             </div>
             """
 
-        # Add form to create a new user with a password field
+        # Close the HTML structure
         html += """
-            </section>
-            <section class="content">
-                <form method="POST" action="/add_user">
-                    <h3>Add New User</h3>
-                    <input type="text" name="name" placeholder="Name" required><br>
-                    <input type="email" name="email" placeholder="Email" required><br>
-                    <input type="password" name="password" placeholder="Password" required><br>
-                    <button type="submit">Add User</button>
-                </form>
-            </section>
+                </div>  <!-- Close users-container -->
+            </div>  <!-- Close container -->
             <footer>
                 <p>© 2024 T0fum4n. All rights reserved.</p>
             </footer>
