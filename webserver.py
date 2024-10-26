@@ -94,166 +94,169 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
 
         # Generate HTML with the user data
         html = """
-                <!DOCTYPE html>
-                <html lang="en">
-                <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Users | T0fum4n Blog</title>
-                    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-                    <style>
-                        body {
-                            margin: 0;
-                            padding: 0;
-                            font-family: 'Roboto', sans-serif;
-                            background-color: #0d1117;
-                            color: #c9d1d9;
-                        }
-                        header {
-                            background-color: #161b22;
-                            padding: 20px;
-                            text-align: center;
-                            border-bottom: 1px solid #30363d;
-                        }
-                        header h1 {
-                            margin: 0;
-                            font-size: 2.5rem;
-                            letter-spacing: 2px;
-                            color: #58a6ff;
-                        }
-                        nav {
-                            margin-top: 10px;
-                        }
-                        nav a {
-                            color: #c9d1d9;
-                            text-decoration: none;
-                            margin: 0 15px;
-                            font-weight: 700;
-                        }
-                        nav a:hover {
-                            color: #58a6ff;
-                        }
-                        .container {
-                            display: flex;
-                            padding: 40px;
-                            gap: 20px;
-                            flex-wrap: wrap;
-                        }
-                        .form-container {
-                            flex: 1;
-                            max-width: 300px;
-                            background-color: #161b22;
-                            border: 1px solid #30363d;
-                            border-radius: 10px;
-                            padding: 20px;
-                            box-sizing: border-box;
-                            margin-bottom: 20px;
-                        }
-                        .users-container {
-                            flex: 3;
-                            display: flex;
-                            flex-wrap: wrap;
-                            gap: 20px;
-                            justify-content: flex-start;
-                        }
-                        .card {
-                            background-color: #161b22;
-                            border: 1px solid #30363d;
-                            border-radius: 10px;
-                            padding: 20px;
-                            width: 300px;
-                            display: flex;
-                            flex-direction: column;
-                            justify-content: space-between;
-                        }
-                        .delete-btn {
-                            align-self: center;
-                            background-color: #d73a49;
-                            color: white;
-                            border: none;
-                            border-radius: 5px;
-                            padding: 5px 15px;
-                            font-size: 12px;
-                            cursor: pointer;
-                            transition: background-color 0.3s ease;
-                            margin-top: 10px;
-                        }
-                        .delete-btn:hover {
-                            background-color: #e55361;
-                        }
-                        footer {
-                            background-color: #161b22;
-                            text-align: center;
-                            padding: 10px;
-                            position: fixed;
-                            bottom: 0;
-                            width: 100%;
-                            border-top: 1px solid #30363d;
-                        }
-                        footer p {
-                            margin: 0;
-                            color: #8b949e;
-                        }
-                    </style>
-                </head>
-                <body>
-                    <header>
-                        <h1>Users List</h1>
-                        <nav>
-                            <a href="index.html">Home</a>
-                            <a href="/users.html">Users</a>
-                        </nav>
-                    </header>
-                    <div class="container">
-                        <div class="form-container">
-                            <h3>Add New User</h3>
-                            <form method="POST" action="/add_user">
-                                <input type="text" name="name" placeholder="Name" required>
-                                <input type="email" name="email" placeholder="Email" required>
-                                <input type="password" name="password" placeholder="Password" required>
-                                <button type="submit">Add User</button>
-                            </form>
-                        </div>
-                        <div class="users-container">
-                """
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Users | T0fum4n Blog</title>
+            <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+            <style>
+                body {
+                    margin: 0;
+                    padding: 0;
+                    font-family: 'Roboto', sans-serif;
+                    background-color: #0d1117;
+                    color: #c9d1d9;
+                }
+                header, footer {
+                    background-color: #161b22;
+                    padding: 20px;
+                    text-align: center;
+                }
+                .container {
+                    display: flex;
+                    padding: 40px;
+                    gap: 20px;
+                    flex-wrap: wrap;
+                }
+                .form-container {
+                    flex: 1;
+                    max-width: 300px;
+                    background-color: #161b22;
+                    border: 1px solid #30363d;
+                    border-radius: 10px;
+                    padding: 20px;
+                    box-sizing: border-box;
+                    margin-bottom: 20px;
+                }
+                .users-container {
+                    flex: 3;
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 20px;
+                    justify-content: flex-start;
+                }
+                .card {
+                    background-color: #161b22;
+                    border: 1px solid #30363d;
+                    border-radius: 10px;
+                    padding: 20px;
+                    width: 300px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                }
+                .delete-btn {
+                    align-self: center;
+                    background-color: #d73a49;
+                    color: white;
+                    border: none;
+                    border-radius: 5px;
+                    padding: 5px 15px;
+                    font-size: 12px;
+                    cursor: pointer;
+                    transition: background-color 0.3s ease;
+                    margin-top: 10px;
+                }
+                .delete-btn:hover {
+                    background-color: #e55361;
+                }
+                input {
+                    width: 100%;
+                    margin-top: 10px;
+                    padding: 12px;
+                    background-color: #0d1117;
+                    border: 1px solid #30363d;
+                    border-radius: 8px;
+                    color: #c9d1d9;
+                    font-size: 16px;
+                    box-sizing: border-box;
+                }
+                input::placeholder {
+                    color: #8b949e;
+                }
+                input:focus {
+                    outline: none;
+                    border-color: #58a6ff;
+                    box-shadow: 0 0 8px #58a6ff;
+                }
+                button {
+                    width: 100%;
+                    padding: 12px;
+                    margin-top: 10px;
+                    background-color: #0366d6;
+                    border: none;
+                    border-radius: 8px;
+                    color: white;
+                    font-size: 16px;
+                    cursor: pointer;
+                    transition: background-color 0.3s ease;
+                }
+                button:hover {
+                    background-color: #005cc5;
+                }
+            </style>
+        </head>
+        <body>
+            <header>
+                <h1>Users List</h1>
+                <nav>
+                    <a href="index.html">Home</a>
+                    <a href="/users.html">Users</a>
+                </nav>
+            </header>
+            <div class="container">
+                <div class="form-container">
+                    <h3>Add New User</h3>
+                    <form method="POST" action="/add_user">
+                        <input type="text" name="name" placeholder="Name" required>
+                        <input type="email" name="email" placeholder="Email" required>
+                        <input type="password" name="password" placeholder="Password" required>
+                        <button type="submit">Add User</button>
+                    </form>
+                </div>
+                <div class="users-container">
+        """
 
+        # Add each user as a card with a delete button at the bottom
         for user_id, name, email in rows:
             html += f"""
-                    <div class="card">
-                        <div>
-                            <h3>User ID: {user_id}</h3>
-                            <p>Name: {name}</p>
-                            <p>Email: {email}</p>
-                        </div>
-                        <button class="delete-btn" data-user-id="{user_id}">Delete</button>
-                    </div>
-                    """
+            <div class="card">
+                <div>
+                    <h3>User ID: {user_id}</h3>
+                    <p>Name: {name}</p>
+                    <p>Email: {email}</p>
+                </div>
+                <button class="delete-btn" data-user-id="{user_id}">Delete</button>
+            </div>
+            """
 
         html += """
-                        </div>
-                    </div>
-                    <footer>
-                        <p>© 2024 T0fum4n. All rights reserved.</p>
-                    </footer>
-                    <script>
-                        document.querySelectorAll('.delete-btn').forEach(button => {
-                            button.addEventListener('click', () => {
-                                const userId = button.getAttribute('data-user-id');
-                                if (confirm('Do you want to delete this user?')) {
-                                    fetch(`/delete_user?id=${userId}`, { method: 'DELETE' })
-                                        .then(response => response.text())
-                                        .then(result => {
-                                            alert(result);
-                                            location.reload();
-                                        })
-                                        .catch(error => console.error('Error:', error));
-                                }
-                            });
-                        });
-                    </script>
-                </body>
-                </html>
-                """
+                </div>
+            </div>
+            <footer>
+                <p>© 2024 T0fum4n. All rights reserved.</p>
+            </footer>
+            <script>
+                document.querySelectorAll('.delete-btn').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const userId = button.getAttribute('data-user-id');
+                        if (confirm('Do you want to delete this user?')) {
+                            fetch(`/delete_user?id=${userId}`, { method: 'DELETE' })
+                                .then(response => response.text())
+                                .then(result => {
+                                    alert(result);
+                                    location.reload();
+                                })
+                                .catch(error => console.error('Error:', error));
+                        }
+                    });
+                });
+            </script>
+        </body>
+        </html>
+        """
         return html
 
     def add_user_to_db(self, name, email, password):
