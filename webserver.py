@@ -118,6 +118,7 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
                     display: flex;
                     padding: 40px;
                     gap: 20px;
+                    flex-wrap: wrap;
                 }
                 .form-container {
                     flex: 1;
@@ -126,37 +127,37 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
                     border: 1px solid #30363d;
                     border-radius: 10px;
                     padding: 20px;
+                    box-sizing: border-box;
+                    margin-bottom: 20px;
                 }
                 .users-container {
                     flex: 3;
                     display: flex;
                     flex-wrap: wrap;
                     gap: 20px;
+                    justify-content: flex-start;
                 }
                 .card {
-                    position: relative;
                     background-color: #161b22;
                     border: 1px solid #30363d;
                     border-radius: 10px;
                     padding: 20px;
                     width: 300px;
-                    transition: transform 0.2s;
-                }
-                .card:hover {
-                    transform: scale(1.03);
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
                 }
                 .delete-btn {
-                    position: absolute;
-                    top: 10px;
-                    right: 10px;
+                    align-self: center;
                     background-color: #d73a49;
                     color: white;
                     border: none;
                     border-radius: 5px;
-                    padding: 5px 8px;
+                    padding: 5px 15px;
                     font-size: 12px;
                     cursor: pointer;
                     transition: background-color 0.3s ease;
+                    margin-top: 10px;
                 }
                 .delete-btn:hover {
                     background-color: #e55361;
@@ -170,6 +171,7 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
                     border-radius: 8px;
                     color: #c9d1d9;
                     font-size: 16px;
+                    box-sizing: border-box;
                 }
                 input::placeholder {
                     color: #8b949e;
@@ -217,14 +219,16 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
                 <div class="users-container">
         """
 
-        # Add each user as a card with a delete button
+        # Add each user as a card with a delete button at the bottom
         for user_id, name, email in rows:
             html += f"""
             <div class="card">
+                <div>
+                    <h3>User ID: {user_id}</h3>
+                    <p>Name: {name}</p>
+                    <p>Email: {email}</p>
+                </div>
                 <button class="delete-btn" data-user-id="{user_id}">Delete</button>
-                <h3>User ID: {user_id}</h3>
-                <p>Name: {name}</p>
-                <p>Email: {email}</p>
             </div>
             """
 
