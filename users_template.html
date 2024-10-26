@@ -37,15 +37,19 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100%; /* Make the block fill available space */
         }
         .form-container h3 {
             margin-bottom: 20px;
             text-align: center;
         }
-        .form-container input, .form-container button {
-            width: 100%; /* Ensure button matches the input field width */
-            margin-bottom: 15px;
+        .form-group {
+            width: 100%; /* Ensure the inputs and button take the same width */
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .form-group input, .form-group button {
+            width: 100%;
             padding: 12px;
             background-color: #0d1117;
             border: 1px solid #30363d;
@@ -53,15 +57,15 @@
             color: #c9d1d9;
             font-size: 16px;
         }
-        .form-container input::placeholder {
+        .form-group input::placeholder {
             color: #8b949e;
         }
-        .form-container input:focus {
+        .form-group input:focus {
             outline: none;
             border-color: #58a6ff;
             box-shadow: 0 0 8px #58a6ff;
         }
-        .form-container button {
+        .form-group button {
             background-color: #0366d6;
             border: none;
             color: white;
@@ -69,7 +73,7 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-        .form-container button:hover {
+        .form-group button:hover {
             background-color: #005cc5;
         }
         .users-container {
@@ -115,7 +119,7 @@
     <div class="container">
         <div class="form-container">
             <h3>Add New User</h3>
-            <form method="POST" action="/add_user">
+            <form method="POST" action="/add_user" class="form-group">
                 <input type="text" name="name" placeholder="Name" required>
                 <input type="email" name="email" placeholder="Email" required>
                 <input type="password" name="password" placeholder="Password" required>
