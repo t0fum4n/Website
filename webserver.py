@@ -128,8 +128,8 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
         try:
             conn = mysql.connector.connect(
                 host="localhost",
-                user="readonly_user",  # Replace with the appropriate user
-                password="your_password",  # Replace with the actual password
+                user="root",  # Replace with the appropriate user
+                password="",  # Replace with the actual password
                 database="website_data"
             )
             cursor = conn.cursor()
