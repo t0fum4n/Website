@@ -36,17 +36,25 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
             password = form_data.get("password", [""])[0]
 
             if name and email and password:
-                # Insert new user into the database with the provided password
+                # Insert new user into the database
                 result = self.add_user_to_db(name, email, password)
-                response = f"<h1>{result}</h1>"
+                if "successfully" in result:  # Check if the insertion was successful
+                    # Redirect to the users.html page
+                    self.send_response(303)  # 303 See Other for redirects after POST
+                    self.send_header("Location", "/users.html")
+                    self.end_headers()
+                else:
+                    response = f"<h1>{result}</h1>"
+                    self.send_response(200)
+                    self.send_header("Content-type", "text/html")
+                    self.end_headers()
+                    self.wfile.write(response.encode("utf-8"))
             else:
                 response = "<h1>Error: All fields are required!</h1>"
-
-            # Send response back to the client
-            self.send_response(200)
-            self.send_header("Content-type", "text/html")
-            self.end_headers()
-            self.wfile.write(response.encode("utf-8"))
+                self.send_response(200)
+                self.send_header("Content-type", "text/html")
+                self.end_headers()
+                self.wfile.write(response.encode("utf-8"))
 
     def get_users_html(self):
         # Connect to the MySQL database and query user data
