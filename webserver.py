@@ -3,6 +3,7 @@ import socketserver
 import mysql.connector  # Use this to connect to MySQL
 import os
 from urllib.parse import parse_qs
+import bcrypt  # For password hashing
 
 # Set the directory where your HTML files are stored
 web_dir = "/var/www/html"
@@ -32,13 +33,14 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
 
             name = form_data.get("name", [""])[0]
             email = form_data.get("email", [""])[0]
+            password = form_data.get("password", [""])[0]
 
-            if name and email:
-                # Insert new user into the database
-                result = self.add_user_to_db(name, email)
+            if name and email and password:
+                # Insert new user into the database with the provided password
+                result = self.add_user_to_db(name, email, password)
                 response = f"<h1>{result}</h1>"
             else:
-                response = "<h1>Error: Name and Email are required!</h1>"
+                response = "<h1>Error: All fields are required!</h1>"
 
             # Send response back to the client
             self.send_response(200)
@@ -51,8 +53,8 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
         try:
             conn = mysql.connector.connect(
                 host="localhost",
-                user="readonly_user",  # MySQL root user
-                password="your_password",  # No password for root
+                user="root",  # Replace with the appropriate user
+                password="",  # Replace with the actual password
                 database="website_data"  # Correct database name
             )
         except mysql.connector.Error as err:
@@ -104,14 +106,15 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
             </div>
             """
 
-        # Add form to create a new user
+        # Add form to create a new user with a password field
         html += """
             </section>
             <section class="content">
                 <form method="POST" action="/add_user">
                     <h3>Add New User</h3>
-                    <input type="text" name="name" placeholder="Name" required>
-                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="text" name="name" placeholder="Name" required><br>
+                    <input type="email" name="email" placeholder="Email" required><br>
+                    <input type="password" name="password" placeholder="Password" required><br>
                     <button type="submit">Add User</button>
                 </form>
             </section>
@@ -123,8 +126,10 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
         """
         return html
 
-    def add_user_to_db(self, name, email):
-        # Connect to the MySQL database and insert the new user with a default password
+    def add_user_to_db(self, name, email, password):
+        # Hash the password
+        hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+
         try:
             conn = mysql.connector.connect(
                 host="localhost",
@@ -133,9 +138,9 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
                 database="website_data"
             )
             cursor = conn.cursor()
-            # Insert with a default password
+            # Insert the user with the hashed password
             cursor.execute("INSERT INTO users (name, email, password) VALUES (%s, %s, %s)",
-                           (name, email, "default_password"))
+                           (name, email, hashed_password.decode('utf-8')))
             conn.commit()
             conn.close()
             return "User added successfully!"
