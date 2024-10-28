@@ -9,7 +9,6 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- CSS Styles -->
     <style>
         body {
             margin: 0;
@@ -51,7 +50,7 @@
         .hero p {
             font-size: 1.2rem;
         }
-        .content {
+        .content, .tools-content {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
@@ -94,7 +93,7 @@
             margin: 0;
             color: #8b949e;
         }
-        .articles-section h2 {
+        .articles-section h2, .tools-section h2 {
             color: #58a6ff;
             text-align: center;
             font-size: 1.8rem;
@@ -119,12 +118,30 @@
         <p>Diving deep into hacking, cybersecurity news, and the latest in IT security trends.</p>
     </section>
 
-    <!-- Add an articles section with a new heading -->
     <section class="articles-section">
         <h2>Check out these recent cybersecurity articles!</h2>
-
         <div class="content" id="news-container">
-            <!-- The Hacker News articles will be loaded here -->
+            <!-- Hacker News articles will load here -->
+        </div>
+    </section>
+
+    <section class="tools-section">
+        <h2>Check out these cybersecurity tools that I think are neat!</h2>
+        <div class="tools-content">
+            <div class="card">
+                <h3><a href="https://filigran.io/solutions/open-cti/" target="_blank">OpenCTI by Filigran</a></h3>
+                <p>A powerful open-source threat intelligence platform that helps organizations manage their cyber threat knowledge efficiently.</p>
+            </div>
+
+            <div class="card">
+                <h3><a href="https://github.com/Spooks4576/Ghost_ESP" target="_blank">Ghost ESP</a></h3>
+                <p>A new ESP32-based cybersecurity project that lets you explore the limits of IoT security with powerful features and flexibility.</p>
+            </div>
+
+            <div class="card">
+                <h3><a href="https://github.com" target="_blank">Flipper Zero Firmware</a></h3>
+                <p>Custom firmware that enhances the capabilities of your Flipper Zero, unlocking new features for penetration testing and more.</p>
+            </div>
         </div>
     </section>
 
@@ -135,7 +152,6 @@
     <script>
         async function fetchHackerNewsRSS() {
             try {
-                // Using the AllOrigins proxy to bypass CORS restrictions
                 const response = await fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://feeds.feedburner.com/TheHackersNews'));
                 const data = await response.json();
 
@@ -154,7 +170,6 @@
                     articles.push({ title, link, description, pubDate });
                 });
 
-                // Shuffle and take 3 random articles
                 articles = articles.sort(() => 0.5 - Math.random()).slice(0, 3);
 
                 const newsContainer = document.getElementById('news-container');
@@ -175,7 +190,6 @@
             }
         }
 
-        // Load the articles when the page is loaded
         window.onload = fetchHackerNewsRSS;
     </script>
 
