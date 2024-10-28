@@ -68,9 +68,18 @@
         }
         .card h3 {
             margin-top: 0;
+            font-size: 1.1rem;
         }
         .card p {
             color: #8b949e;
+        }
+        .card a {
+            text-decoration: none;
+            color: #58a6ff;
+            font-weight: 700;
+        }
+        .card a:hover {
+            color: #c9d1d9;
         }
         footer {
             background-color: #161b22;
@@ -84,6 +93,12 @@
         footer p {
             margin: 0;
             color: #8b949e;
+        }
+        .articles-section h2 {
+            color: #58a6ff;
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
         }
     </style>
 </head>
@@ -104,8 +119,13 @@
         <p>Diving deep into hacking, cybersecurity news, and the latest in IT security trends.</p>
     </section>
 
-    <section class="content" id="news-container">
-        <!-- The Hacker News articles will be loaded here -->
+    <!-- Add an articles section with a new heading -->
+    <section class="articles-section">
+        <h2>Check out these recent cybersecurity articles!</h2>
+
+        <div class="content" id="news-container">
+            <!-- The Hacker News articles will be loaded here -->
+        </div>
     </section>
 
     <footer>
@@ -114,50 +134,49 @@
 
     <script>
         async function fetchHackerNewsRSS() {
-    try {
-        // Using the AllOrigins proxy to bypass CORS restrictions
-        const response = await fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://feeds.feedburner.com/TheHackersNews'));
-        const data = await response.json();
+            try {
+                // Using the AllOrigins proxy to bypass CORS restrictions
+                const response = await fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://feeds.feedburner.com/TheHackersNews'));
+                const data = await response.json();
 
-        const parser = new DOMParser();
-        const rssDoc = parser.parseFromString(data.contents, "application/xml");
+                const parser = new DOMParser();
+                const rssDoc = parser.parseFromString(data.contents, "application/xml");
 
-        const items = rssDoc.querySelectorAll('item');
-        let articles = [];
+                const items = rssDoc.querySelectorAll('item');
+                let articles = [];
 
-        items.forEach(item => {
-            const title = item.querySelector('title').textContent;
-            const link = item.querySelector('link').textContent;
-            const description = item.querySelector('description').textContent;
-            const pubDate = item.querySelector('pubDate').textContent;
+                items.forEach(item => {
+                    const title = item.querySelector('title').textContent;
+                    const link = item.querySelector('link').textContent;
+                    const description = item.querySelector('description').textContent;
+                    const pubDate = item.querySelector('pubDate').textContent;
 
-            articles.push({ title, link, description, pubDate });
-        });
+                    articles.push({ title, link, description, pubDate });
+                });
 
-        // Shuffle and take 3 random articles
-        articles = articles.sort(() => 0.5 - Math.random()).slice(0, 3);
+                // Shuffle and take 3 random articles
+                articles = articles.sort(() => 0.5 - Math.random()).slice(0, 3);
 
-        const newsContainer = document.getElementById('news-container');
+                const newsContainer = document.getElementById('news-container');
 
-        articles.forEach(article => {
-            const articleCard = document.createElement('div');
-            articleCard.classList.add('card');
-            articleCard.innerHTML = `
-                <h3><a href="${article.link}" target="_blank">${article.title}</a></h3>
-                <p>${article.description}</p>
-                <small>Published on: ${article.pubDate}</small>
-            `;
-            newsContainer.appendChild(articleCard);
-        });
+                articles.forEach(article => {
+                    const articleCard = document.createElement('div');
+                    articleCard.classList.add('card');
+                    articleCard.innerHTML = `
+                        <h3><a href="${article.link}" target="_blank">${article.title}</a></h3>
+                        <p>${article.description}</p>
+                        <small>Published on: ${article.pubDate}</small>
+                    `;
+                    newsContainer.appendChild(articleCard);
+                });
 
-    } catch (error) {
-        console.error('Error fetching the Hacker News RSS feed:', error);
-    }
-}
+            } catch (error) {
+                console.error('Error fetching the Hacker News RSS feed:', error);
+            }
+        }
 
-// Load the articles when the page is loaded
-window.onload = fetchHackerNewsRSS;
-
+        // Load the articles when the page is loaded
+        window.onload = fetchHackerNewsRSS;
     </script>
 
 </body>
