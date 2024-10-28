@@ -9,7 +9,6 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- CSS Styles -->
     <style>
         body {
             margin: 0;
@@ -105,7 +104,7 @@
     </section>
 
     <section class="content" id="news-container">
-        <!-- Hacker News articles will be loaded here -->
+        <!-- Articles will be loaded here -->
     </section>
 
     <footer>
@@ -113,41 +112,10 @@
     </footer>
 
     <script>
-        // Fetch top stories from Hacker News and display three random ones
-        async function loadHackerNewsArticles() {
+        async function loadHackerNewsRSS() {
+            const rssUrl = 'https://feeds.feedburner.com/TheHackersNews';
             try {
-                const response = await fetch('https://hacker-news.firebaseio.com/v0/topstories.json');
-                const storyIds = await response.json();
-
-                // Get three random story IDs
-                const randomStoryIds = storyIds.sort(() => 0.5 - Math.random()).slice(0, 3);
-
-                const articles = await Promise.all(
-                    randomStoryIds.map(async (id) => {
-                        const storyResponse = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`);
-                        return await storyResponse.json();
-                    })
-                );
-
-                const newsContainer = document.getElementById('news-container');
-
-                articles.forEach(article => {
-                    const articleCard = document.createElement('div');
-                    articleCard.classList.add('card');
-                    articleCard.innerHTML = `
-                        <h3><a href="${article.url}" target="_blank">${article.title}</a></h3>
-                        <p>By ${article.by}</p>
-                    `;
-                    newsContainer.appendChild(articleCard);
-                });
-            } catch (error) {
-                console.error('Error loading Hacker News articles:', error);
-            }
-        }
-
-        // Load the articles when the page is loaded
-        window.onload = loadHackerNewsArticles;
-    </script>
-
-</body>
-</html>
+                const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`);
+                const data = await response.json();
+                const parser = new DOMParser();
+                const xmlDoc
