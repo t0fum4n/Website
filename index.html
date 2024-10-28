@@ -92,12 +92,11 @@
     <header>
         <h1>T0fum4n's Cybersecurity Blog</h1>
         <nav>
-   	 <a href="index.html">Home</a>
-   	 <a href="about.html">About</a>
-   	 <a href="articles.html">Articles</a>
-   	 <a href="contact.html">Contact</a>
-	</nav>
-
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="articles.html">Articles</a>
+            <a href="contact.html">Contact</a>
+        </nav>
     </header>
 
     <section class="hero">
@@ -105,26 +104,50 @@
         <p>Diving deep into hacking, cybersecurity news, and the latest in IT security trends.</p>
     </section>
 
-    <section class="content">
-        <div class="card">
-            <h3>Latest Post: The State of Cloud Security</h3>
-            <p>A deep dive into AWS vulnerabilities, security controls, and best practices for 2024.</p>
-        </div>
-
-        <div class="card">
-            <h3>Zero-Day Alerts</h3>
-            <p>Stay ahead of the curve with the latest vulnerabilities and zero-day news.</p>
-        </div>
-
-        <div class="card">
-            <h3>Tools & Tutorials</h3>
-            <p>Learn how to use tools like Nmap, Metasploit, and Wireshark with hands-on tutorials.</p>
-        </div>
+    <section class="content" id="news-container">
+        <!-- Hacker News articles will be loaded here -->
     </section>
 
     <footer>
         <p>© 2024 T0fum4n. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Fetch top stories from Hacker News and display three random ones
+        async function loadHackerNewsArticles() {
+            try {
+                const response = await fetch('https://hacker-news.firebaseio.com/v0/topstories.json');
+                const storyIds = await response.json();
+
+                // Get three random story IDs
+                const randomStoryIds = storyIds.sort(() => 0.5 - Math.random()).slice(0, 3);
+
+                const articles = await Promise.all(
+                    randomStoryIds.map(async (id) => {
+                        const storyResponse = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`);
+                        return await storyResponse.json();
+                    })
+                );
+
+                const newsContainer = document.getElementById('news-container');
+
+                articles.forEach(article => {
+                    const articleCard = document.createElement('div');
+                    articleCard.classList.add('card');
+                    articleCard.innerHTML = `
+                        <h3><a href="${article.url}" target="_blank">${article.title}</a></h3>
+                        <p>By ${article.by}</p>
+                    `;
+                    newsContainer.appendChild(articleCard);
+                });
+            } catch (error) {
+                console.error('Error loading Hacker News articles:', error);
+            }
+        }
+
+        // Load the articles when the page is loaded
+        window.onload = loadHackerNewsArticles;
+    </script>
 
 </body>
 </html>
