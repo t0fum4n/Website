@@ -3,30 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FTP IPs</title>
+    <title>Anonymous FTP IPs | T0fum4n</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+        }
+        header {
+            background-color: #161b22;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #30363d;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            color: #58a6ff;
+        }
+        nav {
+            margin-top: 10px;
+        }
+        nav a {
+            color: #c9d1d9;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 700;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #58a6ff;
+        }
+        .container {
+            padding: 40px;
+        }
         table {
             width: 100%;
             border-collapse: collapse;
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            overflow: hidden;
         }
         th, td {
-            border: 1px solid black;
-            padding: 8px;
+            padding: 12px;
             text-align: left;
+            border-bottom: 1px solid #30363d;
         }
         th {
-            background-color: #f2f2f2;
+            background-color: #0d1117;
+            color: #58a6ff;
+        }
+        td {
+            color: #c9d1d9;
+        }
+        footer {
+            background-color: #161b22;
+            text-align: center;
+            padding: 10px;
+            border-top: 1px solid #30363d;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        footer p {
+            margin: 0;
+            color: #8b949e;
         }
     </style>
 </head>
 <body>
-    <h1>Anonymous FTP IPs</h1>
-    <table>
-        <tr>
-            <th>IP Address</th>
-            <th>Last Checked</th>
-        </tr>
-        <!-- FTP_IPS -->
-    </table>
+    <header>
+        <h1>Anonymous FTP IPs</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="articles.html">Articles</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <table>
+            <tr>
+                <th>IP Address</th>
+                <th>Last Checked</th>
+            </tr>
+            <!-- FTP_IPS -->
+        </table>
+    </div>
+
+    <footer>
+        <p>© 2024 T0fum4n. All rights reserved.</p>
+    </footer>
 </body>
 </html>
