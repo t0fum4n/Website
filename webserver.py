@@ -3,7 +3,6 @@ import socketserver
 import mysql.connector
 import os
 from urllib.parse import parse_qs
-import bcrypt
 
 web_dir = "/var/www/html"
 os.chdir(web_dir)
@@ -18,13 +17,21 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
             self.send_header("Content-type", "text/html")
             self.end_headers()
             self.wfile.write(html_content.encode("utf-8"))
+
+        elif self.path == "/ftp_ips.html":
+            html_content = self.get_ftp_ips_html()
+            self.send_response(200)
+            self.send_header("Content-type", "text/html")
+            self.end_headers()
+            self.wfile.write(html_content.encode("utf-8"))
+
         else:
             super().do_GET()
 
     def get_users_html(self):
         try:
             conn = mysql.connector.connect(
-                host="localhost", user="root", password="", database="website_data"
+                host="localhost", user="root", password="Justus2009!", database="website_data"
             )
             cursor = conn.cursor()
             cursor.execute("SELECT id, name, email FROM users")
@@ -52,32 +59,33 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
         html_content = template.replace("<!-- USER_CARDS -->", user_cards)
         return html_content
 
-    def do_DELETE(self):
-        if self.path.startswith("/delete_user"):
-            query = self.path.split('?')[-1]
-            params = parse_qs(query)
-            user_id = params.get('id', [None])[0]
-
-            if user_id:
-                result = self.delete_user_from_db(user_id)
-                self.send_response(200)
-                self.end_headers()
-                self.wfile.write(result.encode("utf-8"))
-            else:
-                self.send_error(400, "Invalid user ID.")
-
-    def delete_user_from_db(self, user_id):
+    def get_ftp_ips_html(self):
+        """Generate the HTML for displaying FTP IP addresses."""
         try:
             conn = mysql.connector.connect(
-                host="localhost", user="root", password="", database="website_data"
+                host="localhost", user="root", password="Justus2009!", database="ftp_data"
             )
             cursor = conn.cursor()
-            cursor.execute("DELETE FROM users WHERE id = %s", (user_id,))
-            conn.commit()
+            cursor.execute("SELECT ip_address, last_checked FROM ftp_ips")
+            rows = cursor.fetchall()
             conn.close()
-            return "User deleted successfully!"
         except mysql.connector.Error as err:
-            return f"Error: {err}"
+            return f"<h1>Database connection error: {err}</h1>"
+
+        with open("ftp_ips_template.html", "r") as file:
+            template = file.read()
+
+        ip_list_html = ""
+        for ip_address, last_checked in rows:
+            ip_list_html += f"""
+            <tr>
+                <td>{ip_address}</td>
+                <td>{last_checked}</td>
+            </tr>
+            """
+
+        html_content = template.replace("<!-- FTP_IPS -->", ip_list_html)
+        return html_content
 
 with socketserver.TCPServer(("", PORT), MyHandler) as httpd:
     print(f"Serving content from {web_dir} on port {PORT}")
