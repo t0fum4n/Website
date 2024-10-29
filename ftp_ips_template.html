@@ -40,6 +40,16 @@
         }
         .container {
             padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .blurb {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            line-height: 1.6;
         }
         table {
             width: 100%;
@@ -88,6 +98,27 @@
     </header>
 
     <div class="container">
+        <div class="blurb">
+            <h2>What Are These IP Addresses?</h2>
+            <p>
+                This table lists anonymous FTP servers that are publicly accessible. FTP (File Transfer Protocol) is
+                commonly used to transfer files between systems. Some servers allow <strong>anonymous access</strong>,
+                meaning anyone can log in without needing a username or password by using "anonymous" as the username
+                and their email as the password (though the email is often not validated).
+            </p>
+            <p>
+                Allowing anonymous FTP access can present significant security risks. Unauthorized users may upload
+                malicious files, download sensitive information, or abuse the server's resources. Leaving such access
+                open exposes an organization to potential attacks, unauthorized data leaks, and misuse.
+            </p>
+            <p>
+                All the IP addresses listed below belong to anonymous FTP servers located in <strong>Russia</strong>.
+                Users are advised to exercise caution when interacting with these servers, as they could be associated
+                with compromised systems or malicious actors. If you manage an FTP server, it's strongly recommended
+                to disable anonymous access unless absolutely necessary and ensure appropriate monitoring is in place.
+            </p>
+        </div>
+
         <table>
             <tr>
                 <th>IP Address</th>
