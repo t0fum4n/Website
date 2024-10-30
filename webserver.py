@@ -36,17 +36,29 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
             name = params.get("name", [""])[0]
             email = params.get("email", [""])[0]
             password = params.get("password", [""])[0]
-            self.add_user_to_db(name, email, password)
 
-        elif self.path.startswith("/delete_user"):
-            query = self.path.split("?")[-1]
-            params = parse_qs(query)
-            user_id = params.get("id", [""])[0]
-            self.delete_user_from_db(user_id)
+            if name and email and password:
+                self.add_user_to_db(name, email, password)
+                self.send_response(303)
+                self.send_header("Location", "/users.html")
+                self.end_headers()
+            else:
+                self.send_error(400, "Missing user data")
 
-        self.send_response(303)
-        self.send_header("Location", "/users.html")
-        self.end_headers()
+        elif self.path == "/delete_user":
+            content_length = int(self.headers["Content-Length"])
+            post_data = self.rfile.read(content_length).decode("utf-8")
+            params = parse_qs(post_data)
+            user_id = params.get("user_id", [""])[0]
+
+            if user_id:
+                self.delete_user_from_db(user_id)
+                self.send_response(200)
+                self.send_header("Content-type", "text/plain")
+                self.end_headers()
+                self.wfile.write(b"User deleted successfully.")
+            else:
+                self.send_error(400, "Invalid user ID")
 
     def add_user_to_db(self, name, email, password):
         try:
