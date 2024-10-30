@@ -10,16 +10,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
-        html {
-            height: 100%; /* Ensure the HTML element takes the full height */
-        }
-        body {
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box; /* Prevents overflow due to padding */
+        }
+        html, body {
+            height: 100%; /* Ensure full height of the viewport */
             font-family: 'Roboto', sans-serif;
             background-color: #0d1117;
             color: #c9d1d9;
-            min-height: 100vh; /* Ensure the body takes at least the full height of the screen */
+        }
+        body {
             display: flex;
             flex-direction: column;
         }
@@ -30,7 +32,6 @@
             border-bottom: 1px solid #30363d;
         }
         header h1 {
-            margin: 0;
             font-size: 2.5rem;
             letter-spacing: 2px;
             color: #58a6ff;
@@ -62,7 +63,7 @@
             flex-wrap: wrap;
             gap: 20px;
             padding: 40px 20px;
-            flex-grow: 1; /* Allows content to grow and push footer down */
+            flex-grow: 1;
         }
         .card {
             background-color: #161b22;
@@ -73,7 +74,6 @@
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
         }
         .card h3 {
-            margin-top: 0;
             font-size: 1.1rem;
         }
         .card p {
@@ -91,9 +91,8 @@
             background-color: #161b22;
             text-align: center;
             padding: 20px;
-            width: 100%;
             border-top: 1px solid #30363d;
-            margin-top: auto; /* Pushes the footer to the bottom if content is less */
+            width: 100%;
         }
         footer p {
             margin: 0;
@@ -104,6 +103,9 @@
             text-align: center;
             font-size: 1.8rem;
             margin-bottom: 30px;
+        }
+        main {
+            flex: 1; /* Pushes the footer down */
         }
     </style>
 </head>
@@ -119,37 +121,39 @@
         </nav>
     </header>
 
-    <section class="hero">
-        <h2>Welcome to T0fum4n.com</h2>
-        <p>Diving deep into hacking, cybersecurity news, and the latest in IT security trends.</p>
-    </section>
+    <main>
+        <section class="hero">
+            <h2>Welcome to T0fum4n.com</h2>
+            <p>Diving deep into hacking, cybersecurity news, and the latest in IT security trends.</p>
+        </section>
 
-    <section class="articles-section">
-        <h2>Check out these recent cybersecurity articles!</h2>
-        <div class="content" id="news-container">
-            <!-- Hacker News articles will load here -->
-        </div>
-    </section>
-
-    <section class="tools-section">
-        <h2>Check out these cybersecurity tools that I think are neat!</h2>
-        <div class="tools-content">
-            <div class="card">
-                <h3><a href="https://filigran.io/solutions/open-cti/" target="_blank">OpenCTI by Filigran</a></h3>
-                <p>A powerful open-source threat intelligence platform that helps organizations manage their cyber threat knowledge efficiently.</p>
+        <section class="articles-section">
+            <h2>Check out these recent cybersecurity articles!</h2>
+            <div class="content" id="news-container">
+                <!-- Hacker News articles will load here -->
             </div>
+        </section>
 
-            <div class="card">
-                <h3><a href="https://github.com/Spooks4576/Ghost_ESP" target="_blank">Ghost ESP</a></h3>
-                <p>A new ESP32-based cybersecurity project that lets you explore the limits of IoT security with powerful features and flexibility.</p>
-            </div>
+        <section class="tools-section">
+            <h2>Check out these cybersecurity tools that I think are neat!</h2>
+            <div class="tools-content">
+                <div class="card">
+                    <h3><a href="https://filigran.io/solutions/open-cti/" target="_blank">OpenCTI by Filigran</a></h3>
+                    <p>A powerful open-source threat intelligence platform that helps organizations manage their cyber threat knowledge efficiently.</p>
+                </div>
 
-            <div class="card">
-                <h3><a href="https://momentum-fw.dev/" target="_blank">Momentum Firmware</a></h3>
-                <p>Custom firmware that enhances the capabilities of your Flipper Zero, unlocking new features for penetration testing and more.</p>
+                <div class="card">
+                    <h3><a href="https://github.com/Spooks4576/Ghost_ESP" target="_blank">Ghost ESP</a></h3>
+                    <p>A new ESP32-based cybersecurity project that lets you explore the limits of IoT security with powerful features and flexibility.</p>
+                </div>
+
+                <div class="card">
+                    <h3><a href="https://momentum-fw.dev/" target="_blank">Momentum Firmware</a></h3>
+                    <p>Custom firmware that enhances the capabilities of your Flipper Zero, unlocking new features for penetration testing and more.</p>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <footer>
         <p>© 2024 T0fum4n. All rights reserved.</p>
