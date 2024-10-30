@@ -28,6 +28,53 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
         else:
             super().do_GET()
 
+    def do_POST(self):
+        if self.path == "/add_user":
+            content_length = int(self.headers["Content-Length"])
+            post_data = self.rfile.read(content_length).decode("utf-8")
+            params = parse_qs(post_data)
+            name = params.get("name", [""])[0]
+            email = params.get("email", [""])[0]
+            password = params.get("password", [""])[0]
+            self.add_user_to_db(name, email, password)
+
+        elif self.path.startswith("/delete_user"):
+            query = self.path.split("?")[-1]
+            params = parse_qs(query)
+            user_id = params.get("id", [""])[0]
+            self.delete_user_from_db(user_id)
+
+        self.send_response(303)
+        self.send_header("Location", "/users.html")
+        self.end_headers()
+
+    def add_user_to_db(self, name, email, password):
+        try:
+            conn = mysql.connector.connect(
+                host="localhost", user="root", password="Justus2009!", database="website_data"
+            )
+            cursor = conn.cursor()
+            cursor.execute(
+                "INSERT INTO users (name, email, password) VALUES (%s, %s, %s)",
+                (name, email, password),
+            )
+            conn.commit()
+            conn.close()
+        except mysql.connector.Error as err:
+            print(f"Database error: {err}")
+
+    def delete_user_from_db(self, user_id):
+        try:
+            conn = mysql.connector.connect(
+                host="localhost", user="root", password="Justus2009!", database="website_data"
+            )
+            cursor = conn.cursor()
+            cursor.execute("DELETE FROM users WHERE id = %s", (user_id,))
+            conn.commit()
+            conn.close()
+        except mysql.connector.Error as err:
+            print(f"Database error: {err}")
+
     def get_users_html(self):
         try:
             conn = mysql.connector.connect(
@@ -60,7 +107,6 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
         return html_content
 
     def get_ftp_ips_html(self):
-        """Generate the HTML for displaying FTP IP addresses."""
         try:
             conn = mysql.connector.connect(
                 host="localhost", user="root", password="Justus2009!", database="ftp_data"
