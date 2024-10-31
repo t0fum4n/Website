@@ -127,10 +127,22 @@
             <p>Diving deep into hacking, cybersecurity news, and the latest in IT security trends.</p>
         </section>
 
+        <!-- Updated Articles Section with Placeholder Links -->
         <section class="articles-section">
-            <h2>Check out these recent cybersecurity articles!</h2>
-            <div class="content" id="news-container">
-                <!-- Hacker News articles will load here -->
+            <h2>Explore Some of Our Cybersecurity Basics</h2>
+            <div class="content">
+                <div class="card">
+                    <h3><a href="articles.html">What is Phishing? How to Spot and Avoid Scams</a></h3>
+                    <p>An introduction to phishing, explaining how it works and ways to protect yourself from these scams.</p>
+                </div>
+                <div class="card">
+                    <h3><a href="articles.html">Understanding Cyber Vulnerabilities</a></h3>
+                    <p>Learn about cyber vulnerabilities, how attackers exploit them, and steps you can take to stay secure.</p>
+                </div>
+                <div class="card">
+                    <h3><a href="articles.html">Ransomware 101: Protecting Against Data Hijacks</a></h3>
+                    <p>Discover the basics of ransomware, including how it operates and measures to defend against it.</p>
+                </div>
             </div>
         </section>
 
@@ -158,50 +170,6 @@
     <footer>
         <p>© 2024 T0fum4n. All rights reserved.</p>
     </footer>
-
-    <script>
-        async function fetchHackerNewsRSS() {
-            try {
-                const response = await fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://feeds.feedburner.com/TheHackersNews'));
-                const data = await response.json();
-
-                const parser = new DOMParser();
-                const rssDoc = parser.parseFromString(data.contents, "application/xml");
-
-                const items = rssDoc.querySelectorAll('item');
-                let articles = [];
-
-                items.forEach(item => {
-                    const title = item.querySelector('title').textContent;
-                    const link = item.querySelector('link').textContent;
-                    const description = item.querySelector('description').textContent;
-                    const pubDate = item.querySelector('pubDate').textContent;
-
-                    articles.push({ title, link, description, pubDate });
-                });
-
-                articles = articles.sort(() => 0.5 - Math.random()).slice(0, 3);
-
-                const newsContainer = document.getElementById('news-container');
-
-                articles.forEach(article => {
-                    const articleCard = document.createElement('div');
-                    articleCard.classList.add('card');
-                    articleCard.innerHTML = `
-                        <h3><a href="${article.link}" target="_blank">${article.title}</a></h3>
-                        <p>${article.description}</p>
-                        <small>Published on: ${article.pubDate}</small>
-                    `;
-                    newsContainer.appendChild(articleCard);
-                });
-
-            } catch (error) {
-                console.error('Error fetching the Hacker News RSS feed:', error);
-            }
-        }
-
-        window.onload = fetchHackerNewsRSS;
-    </script>
 
 </body>
 </html>
