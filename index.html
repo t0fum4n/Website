@@ -13,27 +13,26 @@
         * {
             margin: 0;
             padding: 0;
-            box-sizing: border-box; /* Prevents overflow due to padding */
+            box-sizing: border-box;
         }
         html, body {
-            height: 100%; /* Ensure full height of the viewport */
+            height: 100%;
             font-family: 'Roboto', sans-serif;
             background-color: #0d1117;
             color: #c9d1d9;
-        }
-        body {
             display: flex;
             flex-direction: column;
+            align-items: center;
         }
         header {
             background-color: #161b22;
-            padding: 20px;
+            width: 100%;
+            padding: 20px 0;
             text-align: center;
             border-bottom: 1px solid #30363d;
         }
         header h1 {
             font-size: 2.5rem;
-            letter-spacing: 2px;
             color: #58a6ff;
         }
         nav a {
@@ -47,37 +46,53 @@
         }
         .hero {
             text-align: center;
-            padding: 100px 20px;
+            padding: 80px 20px;
+            max-width: 800px;
         }
         .hero h2 {
-            font-size: 2rem;
-            margin-bottom: 10px;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
             color: #58a6ff;
         }
         .hero p {
             font-size: 1.2rem;
+            line-height: 1.6;
+            color: #c9d1d9;
         }
-        .content, .tools-content {
+        .section {
+            padding: 40px 20px;
+            max-width: 1000px;
+            width: 100%;
+            text-align: center;
+        }
+        .section h2 {
+            color: #58a6ff;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+        }
+        .content {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
             gap: 20px;
-            padding: 40px 20px;
-            flex-grow: 1;
         }
         .card {
             background-color: #161b22;
             border: 1px solid #30363d;
             border-radius: 10px;
-            width: 300px;
+            width: 280px;
             padding: 20px;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+            text-align: left;
         }
         .card h3 {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            color: #58a6ff;
+            margin-bottom: 10px;
         }
         .card p {
             color: #8b949e;
+            font-size: 1rem;
         }
         .card a {
             text-decoration: none;
@@ -89,23 +104,11 @@
         }
         footer {
             background-color: #161b22;
+            width: 100%;
             text-align: center;
             padding: 20px;
             border-top: 1px solid #30363d;
-            width: 100%;
-        }
-        footer p {
-            margin: 0;
             color: #8b949e;
-        }
-        .articles-section h2, .tools-section h2 {
-            color: #58a6ff;
-            text-align: center;
-            font-size: 1.8rem;
-            margin-bottom: 30px;
-        }
-        main {
-            flex: 1; /* Pushes the footer down */
         }
     </style>
 </head>
@@ -127,8 +130,7 @@
             <p>Your ultimate destination for cybersecurity insights, threat intelligence, and hands-on hacking techniques. Dive deep into a world where the latest in IT security trends meets practical advice, empowering you to defend against digital threats. Whether you're an IT professional, a security enthusiast, or someone curious about the evolving landscape of cyber warfare, you’ll find everything from foundational knowledge to advanced tactics right here. Join a community committed to staying one step ahead in the digital age. Together, let's secure tomorrow, today.</p>
         </section>
 
-        <!-- Updated Articles Section with Placeholder Links -->
-        <section class="articles-section">
+        <section class="section articles-section">
             <h2>Check Out Some Of My Articles!</h2>
             <div class="content">
                 <div class="card">
@@ -146,9 +148,9 @@
             </div>
         </section>
 
-        <section class="tools-section">
+        <section class="section tools-section">
             <h2>Check out these cybersecurity tools that I think are neat!</h2>
-            <div class="tools-content">
+            <div class="content">
                 <div class="card">
                     <h3><a href="https://filigran.io/solutions/open-cti/" target="_blank">OpenCTI by Filigran</a></h3>
                     <p>A powerful open-source threat intelligence platform that helps organizations manage their cyber threat knowledge efficiently.</p>
