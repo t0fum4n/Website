@@ -41,7 +41,9 @@
         }
         .hero {
             text-align: center;
-            padding: 100px 20px;
+            padding: 60px 20px;
+            max-width: 800px;
+            margin: auto;
         }
         .hero h2 {
             font-size: 2rem;
@@ -50,10 +52,13 @@
         }
         .hero p {
             font-size: 1.2rem;
+            color: #c9d1d9;
         }
         .content {
             display: flex;
             justify-content: center;
+            flex-direction: column;
+            align-items: center;
             padding: 40px 20px;
             max-width: 800px;
             margin: auto;
@@ -69,17 +74,24 @@
             line-height: 1.6;
             color: #8b949e;
         }
+        .profile-section {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .profile-section img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 2px solid #58a6ff;
+        }
         footer {
             background-color: #161b22;
             text-align: center;
             padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
             border-top: 1px solid #30363d;
-        }
-        footer p {
-            margin: 0;
+            width: 100%;
             color: #8b949e;
         }
     </style>
@@ -98,33 +110,37 @@
 
     <section class="hero">
         <h2>Who is T0fum4n?</h2>
-        <p>A passionate cybersecurity enthusiast and blogger dedicated to demystifying IT security.</p>
+        <p>A Cybersecurity Engineer by trade and a passionate tech enthusiast dedicated to demystifying IT security.</p>
     </section>
 
     <section class="content">
         <article>
-            <h3>Our Mission</h3>
+            <h3>My Mission</h3>
             <p>
-                At T0fum4n's Cybersecurity Blog, we aim to empower both beginners and experts in the field of cybersecurity.
-                We explore the latest in threat intelligence, cloud security, and ethical hacking,
-                providing hands-on tutorials and practical insights to stay ahead in an ever-evolving industry.
+                At T0fum4n's Cybersecurity Blog, I aim to empower both beginners and experts in the field of cybersecurity.
+                I explore the latest in threat intelligence, cloud security, and ethical hacking,
+                providing hands-on tutorials and practical insights to stay ahead in an ever-evolving industry. I say "we" because who knows...
+                maybe one day it will not be just me writing these things!
             </p>
 
             <h3>Meet the Author</h3>
-            <p>
-                I'm T0fum4n, a cybersecurity professional with a love for hacking, open-source tools, and threat intelligence.
-                I believe in the power of knowledge-sharing and building a strong community around IT security. Whether it’s deep-diving into
-                zero-day vulnerabilities or breaking down complex security concepts, my goal is to make cybersecurity accessible to everyone.
-            </p>
+            <div class="profile-section">
+                <img src="https://media.licdn.com/dms/image/v2/C4D03AQEzxlfJpl7mRw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1660061028072?e=1735776000&v=beta&t=GVOp9vPFxGmGvT39vDHRhqlEs_OkXZBoY1rfVavvPUY" alt="T0fum4n Profile Picture">
+                <p>
+                    I'm T0fum4n, a cybersecurity professional with a love for hacking, open-source tools, and threat intelligence.
+                    I believe in the power of knowledge-sharing and building a strong community around IT security. Whether it’s deep-diving into
+                    zero-day vulnerabilities or giving a high-level overview of what a phishing email is, my goal is to make cybersecurity accessible to everyone.
+                </p>
+            </div>
 
             <h3>What You'll Find Here</h3>
             <p>
                 This blog covers a range of topics including:
                 <ul>
-                    <li>Cloud Security (AWS, Azure, GCP)</li>
-                    <li>Threat Intelligence Feeds & Alerts</li>
-                    <li>Ethical Hacking Tutorials</li>
-                    <li>Reviews of Security Tools</li>
+                    <li>Cyber Security Articles written by me and other authors</li>
+                    <li>Threat Intelligence Information</li>
+                    <li>Cyber Security Tools</li>
+                    <li>Guides and How-to's</li>
                 </ul>
                 Stay tuned for the latest posts and join the conversation!
             </p>
