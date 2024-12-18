@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cybersecurity blog by T0fum4n, covering hacking, threat intelligence, and all things IT security.">
+    <title>T0fum4n | Cybersecurity Blog</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            height: 100%;
+            font-family: 'Roboto', sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            background-color: #161b22;
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #30363d;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            color: #58a6ff;
+        }
+        nav a {
+            color: #c9d1d9;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 700;
+        }
+        nav a:hover {
+            color: #58a6ff;
+        }
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            max-width: 1000px; /* Match max-width with other sections */
+            margin: 0 auto;
+        }
+        .hero h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #58a6ff;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+        .content, .tools-content {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .card {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            width: 300px;
+            padding: 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        .card h3 {
+            font-size: 1.1rem;
+        }
+        .card p {
+            color: #8b949e;
+        }
+        .card a {
+            text-decoration: none;
+            color: #58a6ff;
+            font-weight: 700;
+        }
+        .card a:hover {
+            color: #c9d1d9;
+        }
+        footer {
+            background-color: #161b22;
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid #30363d;
+            width: 100%;
+        }
+        footer p {
+            margin: 0;
+            color: #8b949e;
+        }
+        .articles-section h2, .tools-section h2 {
+            color: #58a6ff;
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+        }
+        main {
+            flex: 1;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>T0fum4n's Cybersecurity Blog</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="articles.html">Articles</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h2>Welcome to T0fum4n.com</h2>
+            <p>A place to make sense of cybersecurity—breaking down complex topics into clear, practical insights. Dive into hacking trends, cybersecurity news, and the latest in IT security, with expert advice to help you stay safe online.</p>
+        </section>
+
+        <section class="articles-section">
+            <h2>Check Out Some Of My Articles!</h2>
+            <div class="content">
+                <div class="card">
+                    <h3><a href="articles.html">What is Phishing? How to Spot and Avoid Scams</a></h3>
+                    <p>An introduction to phishing, explaining how it works and ways to protect yourself from these scams.</p>
+                </div>
+                <div class="card">
+                    <h3><a href="articles.html">Understanding Cyber Vulnerabilities</a></h3>
+                    <p>Learn about cyber vulnerabilities, how attackers exploit them, and steps you can take to stay secure.</p>
+                </div>
+                <div class="card">
+                    <h3><a href="articles.html">Ransomware 101: Protecting Against Data Hijacks</a></h3>
+                    <p>Discover the basics of ransomware, including how it operates and measures to defend against it.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="tools-section">
+            <h2>Check out these cybersecurity tools that I think are neat!</h2>
+            <div class="tools-content">
+                <div class="card">
+                    <h3><a href="https://filigran.io/solutions/open-cti/" target="_blank">OpenCTI by Filigran</a></h3>
+                    <p>A powerful open-source threat intelligence platform that helps organizations manage their cyber threat knowledge efficiently.</p>
+                </div>
+
+                <div class="card">
+                    <h3><a href="https://github.com/Spooks4576/Ghost_ESP" target="_blank">Ghost ESP</a></h3>
+                    <p>A new ESP32-based cybersecurity project that lets you explore the limits of IoT security with powerful features and flexibility.</p>
+                </div>
+
+                <div class="card">
+                    <h3><a href="https://momentum-fw.dev/" target="_blank">Momentum Firmware</a></h3>
+                    <p>My favorite custom firmware for the Flipper Zero, bleeding edge features and asset packs... so many asset packs...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 T0fum4n. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
